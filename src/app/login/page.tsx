@@ -16,10 +16,6 @@ export default function Login() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const validateEmail = (email) => {
-    const emailRegex = /[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
   const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -28,13 +24,14 @@ export default function Login() {
   const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
   };
-  const [email, setEmail ] = React.useState(false)
-  const [password, setPassword ] = React.useState(false)
+  const [email, setEmail ] = React.useState<string>('')
+  const [password, setPassword ] = React.useState<string>('')
   const handleSignIn = () => {
     if (email && password) {
       console.log('Email:', email);
+      console.log('Password:', password);    
     } else {
-      console.log('Password:', password);
+        console.log('Email and password are required.');
     }
     setOpen(true);
   };
@@ -136,12 +133,10 @@ export default function Login() {
               <AlertTitle>Success</AlertTitle>
               Login berhasil!
             </Alert>
-            <Typography variant="h6" sx={{ mt: 2, textAlign: 'center' }}>
-                
-            </Typography>
           </Box>
         </Modal>
       </div>
     </main>
   );
+
 }
